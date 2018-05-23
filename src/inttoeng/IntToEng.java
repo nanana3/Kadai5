@@ -5,54 +5,60 @@ import java.util.Scanner;
 public class IntToEng {
 	  // メインメソッド
     public static void main(String[] args) {
- 
-        Scanner sc = new Scanner(System.in);
+    	Scanner sc = new Scanner(System.in);
         int input = sc.nextInt();
- 
+
         System.out.println(translateEng(input));
- 
+
     }
- 
+
     // 数値を英訳する変換するメソッド
     static String translateEng(int n) {
-        int valLen = String.valueOf( n ).length();
-        String s="";
-         
-        String[] ones = {"zero","one","two","three","four","five","six","seven","eight","nine"};
-        if(valLen==1){
-            if(n==0) s=ones[0];
-            else if(n==1) return "zero";
-            else if(n==2) return "two";
-            else if(n==3) return "three";
-            else if(n==4) return "four";
-            else if(n==5) return "five";
-            else if(n==6) return "six";
-            else if(n==7) return "seven";
-            else if(n==8) return "eight";
-            else if(n==9) return "nine";
-        } else if(valLen==2){
-            int one = n%10;
-            int tens = n/10;
-            if(one==0){
-                if(n==10) return "ten";
-            }
-            if(tens==1){
-                if(n==10) return "ten";
-                else if(n==11) return "eleven";
-                else if(n==12) return "twelve";
-                else if(n==13) return "thirteen";
-                else if(n==14) return "fourteen";
-                else if(n==15) return "fifteen";
-                else if(n==16) return "sixteen";
-                else if(n==17) return "seventeen";
-                else if(n==18) return "eighteen";
-                else if(n==19) return "nineteen";
-            }
-             
-             
-             
-        }
-        return s;
-    }
+       int valLen = String.valueOf( n ).length();
+       String s="";
+       String[] ones = {"zero","one","two","three","four","five","six","seven","eight","nine"};
+       String[] teen = {"ten","eleven","twelve","thirteen","fourteen","fifteen","sixteen","seventeen","eighteen","nineteen"};
+       String[] tens = {"twenty","thirty","forty","fifty","sixty","seventy","eighty","ninety"};
+       int one = n%10;
+       int ten = (n/10)%10;
+       if(valLen>=2){
+           if(ten==1){
+               if(n==10) s=teen[0];
+               else if(n==11) s=teen[1];
+               else if(n==12) s=teen[2];
+               else if(n==13) s=teen[3];
+               else if(n==14) s=teen[4];
+               else if(n==15) s=teen[5];
+               else if(n==16) s=teen[6];
+               else if(n==17) s=teen[7];
+               else if(n==18) s=teen[8];
+               else if(n==19) s=teen[9];
+           } else {
+               if(ten==2) s=tens[0];
+               else if(ten==3) s=tens[1];
+               else if(ten==4) s=tens[2];
+               else if(ten==5) s=tens[3];
+               else if(ten==6) s=tens[4];
+               else if(ten==7) s=tens[5];
+               else if(ten==8) s=tens[6];
+               else if(ten==9) s=tens[7];
+           }   
+            
+       }
+       if(valLen>=1&&ten!=1){
+           if(valLen>1&&one!=0) s = s + " ";
+           if(n==0) s=ones[0];
+           else if(one==1) s=s+ones[1];
+           else if(one==2) s=s+ones[2];
+           else if(one==3) s=s+ones[3];
+           else if(one==4) s=s+ones[4];
+           else if(one==5) s=s+ones[5];
+           else if(one==6) s=s+ones[6];
+           else if(one==7) s=s+ones[7];
+           else if(one==8) s=s+ones[8];
+           else if(one==9) s=s+ones[9];
+       }
+       return s;
+    } 
 
 }
