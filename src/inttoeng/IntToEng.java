@@ -22,8 +22,23 @@ public class IntToEng {
        int one = n%10;
        int ten = (n/10)%10;
        int handred = (n/100)%10;
+       int thousand = (n/1000)%10;
+       if(valLen>=4){
+    	   if(thousand==1) s=s+ones[1];
+           else if(thousand==2) s=s+ones[2];
+           else if(thousand==3) s=s+ones[3];
+           else if(thousand==4) s=s+ones[4];
+           else if(thousand==5) s=s+ones[5];
+           else if(thousand==6) s=s+ones[6];
+           else if(thousand==7) s=s+ones[7];
+           else if(thousand==8) s=s+ones[8];
+           else if(thousand==9) s=s+ones[9];
+    	   if(thousand!=0) s=s+" thousand";
+    	   if(valLen==4&&n%1000==0) return s;
+    	   n=n-thousand*1000; 
+       }
        if(valLen>=3){
-    	   
+    	   if(valLen>3&&handred!=0) s = s + " ";
            if(handred==1) s=s+ones[1];
            else if(handred==2) s=s+ones[2];
            else if(handred==3) s=s+ones[3];
@@ -33,7 +48,8 @@ public class IntToEng {
            else if(handred==7) s=s+ones[7];
            else if(handred==8) s=s+ones[8];
            else if(handred==9) s=s+ones[9];
-    	   s=s+" handred";
+           if(handred!=0) s=s+" handred";
+    	   if(valLen>=3&&n%100==0) return s;
     	   n=n-handred*100;
        }
        if(valLen>=2){
