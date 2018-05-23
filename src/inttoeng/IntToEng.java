@@ -23,7 +23,39 @@ public class IntToEng {
        int ten = (n/10)%10;
        int handred = (n/100)%10;
        int thousand = (n/1000)%10;
-       if(valLen>=4){
+       int tenthousand = (n/10000)%10;
+       System.out.println(thousand);
+       if(valLen>=5){
+    	   if(valLen>5&&thousand!=0) s = s + " ";
+           if(tenthousand/10==1){
+               if(thousand==10) s=s+teen[0];
+               else if(thousand==11) s=s+teen[1];
+               else if(thousand==12) s=s+teen[2];
+               else if(thousand==13) s=s+teen[3];
+               else if(thousand==14) s=s+teen[4];
+               else if(thousand==15) s=s+teen[5];
+               else if(thousand==16) s=s+teen[6];
+               else if(thousand==17) s=s+teen[7];
+               else if(thousand==18) s=s+teen[8];
+               else if(thousand==19) s=s+teen[9];
+           } else {
+        	   
+               if(tenthousand==2) s=s+tens[0];
+               else if(tenthousand==3) s=s+tens[1];
+               else if(tenthousand==4) s=s+tens[2];
+               else if(tenthousand==5) s=s+tens[3];
+               else if(tenthousand==6) s=s+tens[4];
+               else if(tenthousand==7) s=s+tens[5];
+               else if(tenthousand==8) s=s+tens[6];
+               else if(tenthousand==9) s=s+tens[7];
+           }   
+           
+    	   if(tenthousand!=0) s=s+" thousand";
+    	   if(valLen==5&&n%1000==0) return s;
+    	   n=n-tenthousand*10000; 
+    	   System.out.println(n);
+       
+        }else if(valLen>=4){
     	   if(thousand==1) s=s+ones[1];
            else if(thousand==2) s=s+ones[2];
            else if(thousand==3) s=s+ones[3];
